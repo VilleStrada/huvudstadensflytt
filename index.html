@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huvudstadens Flytt – Företagsflytt, tunga lyft och magasinering i Storstockholm</title>
+<meta name="description" content="Huvudstadens Flytt hjälper företag, kontor och hantverkare i Storstockholm med flytt, tunga lyft och magasinering. En del av Avfallskonsulten i Huvudstaden AB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asfalt:#22272C;      /* text, mörka ytor */
+    --betong:#E8EAE8;      /* sektionsbakgrund */
+    --vit:#FFFFFF;
+    --band:#F5B800;        /* spännband-gul, enda accenten */
+    --filt:#2E4877;        /* flyttfilt-blå, sekundär */
+    --grafit:#5A6168;      /* dämpad text */
+    --linje:#C9CDCC;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--vit);color:var(--asfalt);font-family:"Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 100;font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--band);outline-offset:3px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-stretch:75%;font-variation-settings:"wdth" 75;line-height:1.02;margin:0;letter-spacing:-.01em}
+  h1{font-size:clamp(2.6rem,6.2vw,4.9rem);font-weight:850}
+  h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:800}
+  h3{font-size:1.5rem;font-weight:750}
+  p{margin:0}
+
+  /* Knappar */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.95em 1.5em;border-radius:4px;font-weight:700;text-decoration:none;font-size:1rem;border:2px solid transparent;cursor:pointer;font-family:inherit}
+  .btn-primar{background:var(--band);color:var(--asfalt)}
+  .btn-primar:hover{background:#FFC61A}
+  .btn-sekundar{border-color:currentColor;background:transparent}
+  .btn-sekundar:hover{background:rgba(255,255,255,.08)}
+
+  /* Sidhuvud */
+  header{position:sticky;top:0;z-index:20;background:var(--asfalt);color:var(--vit)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:850;font-variation-settings:"wdth" 70;font-size:1.35rem;line-height:1}
+  .logo-mark{width:34px;height:34px;flex:none}
+  .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+  .nav ul a{text-decoration:none;font-weight:600;font-size:.98rem;opacity:.85}
+  .nav ul a:hover{opacity:1}
+  .nav .btn{padding:.65em 1.1em}
+  .meny-knapp{display:none;background:none;border:0;color:inherit;font:inherit;font-weight:700;cursor:pointer;padding:8px}
+
+  /* Hero */
+  .hero{background:var(--asfalt);color:var(--vit);position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:72px 24px 112px}
+  .hero p.ingress{font-size:1.2rem;color:#C8CDD2;max-width:34ch;margin:24px 0 36px}
+  .hero-knappar{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-fakta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:40px;padding:0;list-style:none;color:#C8CDD2;font-size:.98rem}
+  .hero-fakta li{display:flex;align-items:center;gap:10px}
+  .hero-fakta li::before{content:"";width:10px;height:10px;background:var(--band);flex:none}
+
+  /* Fraktsedeln */
+  .fraktsedel{background:var(--vit);color:var(--asfalt);border-radius:6px;padding:28px 28px 22px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);transform:rotate(2deg);max-width:440px;justify-self:end;width:100%;position:relative}
+  .fraktsedel::before{content:"";position:absolute;top:-12px;left:50%;width:120px;height:26px;margin-left:-60px;background:rgba(245,184,0,.85);transform:rotate(-3deg)}
+  .fs-topp{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--asfalt);padding-bottom:14px;margin-bottom:6px}
+  .fs-titel{font-weight:850;font-variation-settings:"wdth" 70;font-size:1.5rem;line-height:1}
+  .fs-titel small{display:block;font-weight:500;font-variation-settings:"wdth" 100;font-size:.82rem;color:var(--grafit);margin-top:6px}
+  .fs-nr{font-weight:700;font-size:.85rem;color:var(--grafit);text-align:right}
+  .fs-rad{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--linje)}
+  .fs-rad dt{font-size:.85rem;color:var(--grafit);font-weight:600}
+  .fs-rad dd{margin:0;font-weight:650}
+  .fs-bocklista{display:flex;flex-wrap:wrap;gap:8px 16px;font-weight:600;font-size:.95rem}
+  .fs-bocklista span{display:inline-flex;align-items:center;gap:6px}
+  .ruta{width:16px;height:16px;border:2px solid var(--asfalt);display:inline-grid;place-items:center;font-size:12px;line-height:1}
+  .fs-botten{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:16px}
+  .streckkod{height:46px;flex:1;max-width:210px;background:repeating-linear-gradient(90deg,var(--asfalt) 0 2px,transparent 2px 4px,var(--asfalt) 4px 5px,transparent 5px 8px,var(--asfalt) 8px 11px,transparent 11px 12px,var(--asfalt) 12px 13px,transparent 13px 16px)}
+  .stampel{border:3px solid var(--filt);color:var(--filt);font-weight:850;font-variation-settings:"wdth" 70;padding:6px 10px;transform:rotate(-8deg);font-size:1rem;line-height:1.05;text-align:center;border-radius:4px}
+
+  /* Spännbandet längs heron */
+  .band{position:absolute;left:0;right:0;bottom:36px;height:28px;background:var(--band)}
+  .band::before,.band::after{content:"";position:absolute;left:0;right:0;height:0;border-top:2px dashed rgba(34,39,44,.45)}
+  .band::before{top:6px}.band::after{bottom:6px}
+
+  @media (prefers-reduced-motion:no-preference){
+    .fraktsedel{animation:landa .7s cubic-bezier(.2,.8,.2,1) .15s both}
+    @keyframes landa{from{opacity:0;transform:translateY(-28px) rotate(-4deg)}to{opacity:1;transform:translateY(0) rotate(2deg)}}
+  }
+
+  /* Sektioner */
+  section{padding:96px 0}
+  .sektionshuvud{max-width:640px;margin-bottom:48px}
+  .sektionshuvud p{margin-top:16px;color:var(--grafit);font-size:1.12rem}
+
+  /* Målgrupper */
+  .malgrupper{background:var(--betong)}
+  .mg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid var(--asfalt)}
+  .mg{padding:32px 32px 8px 0}
+  .mg + .mg{padding-left:32px;border-left:1px solid var(--linje)}
+  .mg p{margin-top:12px;color:var(--grafit)}
+  .mg ul{margin:16px 0 0;padding-left:18px;color:var(--asfalt)}
+  .mg li{margin:4px 0}
+
+  /* Tjänster */
+  .tjanst{display:grid;grid-template-columns:280px 1fr 1fr;gap:40px;padding:36px 0;border-top:1px solid var(--linje);align-items:start}
+  .tjanst:last-child{border-bottom:1px solid var(--linje)}
+  .tjanst h3{font-size:2rem}
+  .tjanst p{color:var(--grafit)}
+  .tjanst ul{margin:0;padding-left:18px}
+  .tjanst li{margin:4px 0}
+  .tjanst-extra{background:var(--asfalt);color:var(--vit);border-radius:6px;padding:36px;margin-top:40px;display:grid;grid-template-columns:280px 1fr auto;gap:40px;align-items:center}
+  .tjanst-extra p{color:#C8CDD2}
+  .tjanst-extra h3{font-size:1.8rem}
+
+  /* Process */
+  .process{background:var(--betong)}
+  .steg-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;counter-reset:steg}
+  .steg-lista li{counter-increment:steg;border-top:3px solid var(--asfalt);padding-top:18px}
+  .steg-lista li::before{content:counter(steg);display:block;font-weight:850;font-variation-settings:"wdth" 70;font-size:2.6rem;line-height:1;color:var(--filt);margin-bottom:12px}
+  .steg-lista h3{font-size:1.25rem;margin-bottom:8px}
+  .steg-lista p{color:var(--grafit);font-size:.98rem}
+
+  /* Om oss */
+  .om-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .om-grid p + p{margin-top:16px}
+  .om-text p{color:var(--grafit);font-size:1.12rem}
+  .om-kort{border:2px solid var(--asfalt);border-radius:6px;padding:32px}
+  .om-kort dl{margin:0}
+  .om-kort div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--linje)}
+  .om-kort div:last-child{border-bottom:0}
+  .om-kort dt{color:var(--grafit);font-weight:600}
+  .om-kort dd{margin:0;font-weight:650}
+
+  /* Offert */
+  .offert{background:var(--filt);color:var(--vit)}
+  .offert-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+  .offert .sektionshuvud p{color:#D3DBE8}
+  .kontaktvagar{margin-top:32px;display:grid;gap:16px}
+  .kontaktvagar a{text-decoration:none;font-weight:700;font-size:1.25rem}
+  .kontaktvagar span{display:block;font-size:.9rem;font-weight:500;color:#D3DBE8}
+  form{background:var(--vit);color:var(--asfalt);border-radius:6px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+  .falt{display:grid;gap:6px}
+  .falt.hel{grid-column:1/-1}
+  label{font-weight:650;font-size:.95rem}
+  input,select,textarea{font:inherit;font-size:1rem;padding:.75em .85em;border:1.5px solid #9AA1A7;border-radius:4px;background:var(--vit);color:var(--asfalt);width:100%}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--filt);box-shadow:0 0 0 3px rgba(46,72,119,.25)}
+  textarea{min-height:120px;resize:vertical}
+  .form-fot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+  .form-fot small{color:var(--grafit);max-width:40ch}
+  .form-status{grid-column:1/-1;font-weight:600;color:var(--filt)}
+
+  /* Sidfot */
+  footer{background:var(--asfalt);color:#C8CDD2;padding:48px 0;font-size:.95rem}
+  .fot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+  footer strong{color:var(--vit)}
+
+  /* Responsivt */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;padding-bottom:120px}
+    .fraktsedel{justify-self:start;transform:rotate(1deg)}
+    .mg-grid{grid-template-columns:1fr}
+    .mg,.mg + .mg{padding:28px 0;border-left:0}
+    .mg + .mg{border-top:1px solid var(--linje)}
+    .tjanst{grid-template-columns:1fr;gap:16px}
+    .tjanst-extra{grid-template-columns:1fr;gap:20px}
+    .steg-lista{grid-template-columns:1fr 1fr}
+    .om-grid,.offert-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media (max-width:760px){
+    .nav ul,.nav .btn{display:none}
+    .meny-knapp{display:block}
+    .nav.oppen{height:auto;flex-wrap:wrap;padding:16px 0}
+    .nav.oppen ul{display:flex;flex-direction:column;width:100%;gap:14px;padding:8px 0 16px}
+    .nav.oppen .btn{display:inline-flex}
+    section{padding:72px 0}
+    .wrap{padding:0 16px}
+    .hero-grid{padding:48px 16px 112px}
+    form{grid-template-columns:1fr;padding:24px}
+    .steg-lista{grid-template-columns:1fr}
+    .om-kort div{grid-template-columns:1fr;gap:2px}
+    .fs-rad{grid-template-columns:80px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav" id="nav">
+    <a href="#" class="logo" aria-label="Huvudstadens Flytt – till startsidan">
+      <svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="3" fill="#F5B800"/>
+        <path d="M7 24V12l10-5 10 5v12" fill="none" stroke="#22272C" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M12 24v-7h10v7" fill="none" stroke="#22272C" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      Huvudstadens Flytt
+    </a>
+    <button class="meny-knapp" aria-expanded="false" aria-controls="nav" id="menyKnapp">Meny</button>
+    <ul>
+      <li><a href="#tjanster">Tjänster</a></li>
+      <li><a href="#sa-gar-det-till">Så går det till</a></li>
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#offert">Kontakt</a></li>
+    </ul>
+    <a href="#offert" class="btn btn-primar">Begär offert</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-rubrik" style="padding:0">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="hero-rubrik">Flytt, tunga lyft och magasinering för företag i Storstockholm.</h1>
+        <p class="ingress">Vi flyttar kontor, verksamheter och hantverkares utrustning, och tar hand om det som inte ska med.</p>
+        <div class="hero-knappar">
+          <a href="#offert" class="btn btn-primar">Begär offert</a>
+          <a href="#tjanster" class="btn btn-sekundar">Se våra tjänster</a>
+        </div>
+        <ul class="hero-fakta">
+          <li>Lång erfarenhet av logistik och transport</li>
+          <li>Hela Storstockholm</li>
+          <li>Del av Avfallskonsulten i Huvudstaden AB</li>
+        </ul>
+      </div>
+
+      <div class="fraktsedel" aria-label="Exempel på en flyttorder">
+        <div class="fs-topp">
+          <div class="fs-titel">Flyttorder<small>Huvudstadens Flytt</small></div>
+          <div class="fs-nr">Ert företag<br>Storstockholm</div>
+        </div>
+        <dl>
+          <div class="fs-rad"><dt>Från</dt><dd>Nuvarande lokal</dd></div>
+          <div class="fs-rad"><dt>Till</dt><dd>Ny lokal eller vårt magasin</dd></div>
+          <div class="fs-rad"><dt>Gods</dt><dd class="fs-bocklista">
+            <span><i class="ruta" aria-hidden="true">✓</i>Kontor</span>
+            <span><i class="ruta" aria-hidden="true">✓</i>Tunga lyft</span>
+            <span><i class="ruta" aria-hidden="true">✓</i>Magasinering</span>
+            <span><i class="ruta" aria-hidden="true">✓</i>Bortforsling</span>
+          </dd></div>
+          <div class="fs-rad"><dt>Hanteras</dt><dd>Planerat, packat och levererat</dd></div>
+        </dl>
+        <div class="fs-botten">
+          <div class="streckkod" aria-hidden="true"></div>
+          <div class="stampel" aria-hidden="true">KLAR<br>FÖR FLYTT</div>
+        </div>
+      </div>
+    </div>
+    <div class="band" aria-hidden="true"></div>
+  </section>
+
+  <section class="malgrupper" aria-labelledby="mg-rubrik">
+    <div class="wrap">
+      <div class="sektionshuvud">
+        <h2 id="mg-rubrik">Vi jobbar med verksamheter, inte privatflyttar.</h2>
+        <p>Det betyder att vi planerar efter era arbetstider, era leveranser och er fastighet.</p>
+      </div>
+      <div class="mg-grid">
+        <div class="mg">
+          <h3>Kontor</h3>
+          <p>Hela kontorsflyttar eller en avdelning i taget, med så lite stillestånd som möjligt.</p>
+          <ul><li>Skrivbord, stolar och förvaring</li><li>IT och skärmar, märkt per arbetsplats</li><li>Arkiv och pärmar</li></ul>
+        </div>
+        <div class="mg">
+          <h3>Företag och verksamheter</h3>
+          <p>Butiker, lager, kliniker och lokaler där utrustningen är tung eller ömtålig.</p>
+          <ul><li>Inredning och butiksinventarier</li><li>Maskiner och utrustning</li><li>Flytt mellan egna lokaler</li></ul>
+        </div>
+        <div class="mg">
+          <h3>Hantverkare</h3>
+          <p>Material, verktyg och bodar dit jobbet är, och undan när det är klart.</p>
+          <ul><li>Leveranser till arbetsplats</li><li>Flytt av verkstad eller förråd</li><li>Mellanlagring av material</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tjanster" aria-labelledby="tj-rubrik">
+    <div class="wrap">
+      <div class="sektionshuvud">
+        <h2 id="tj-rubrik">Tjänster</h2>
+        <p>Boka det ni behöver, eller låt oss ta hela kedjan från gammal lokal till ny.</p>
+      </div>
+
+      <div class="tjanst">
+        <h3>Företagsflytt</h3>
+        <p>Vi planerar flytten tillsammans med er, packar, bär och ställer på plats i den nya lokalen. Kvällar och helger går att boka när verksamheten inte får stå still.</p>
+        <ul><li>Besiktning och flyttplan</li><li>Emballage och märkning</li><li>Demontering och montering av möbler</li><li>Utplacering enligt ritning</li></ul>
+      </div>
+      <div class="tjanst">
+        <h3>Tunga lyft</h3>
+        <p>För det som är för tungt, för stort eller för dyrbart för vanlig bärhjälp. Vi kommer med rätt utrustning och tillräckligt många personer.</p>
+        <ul><li>Kassaskåp och värdeskåp</li><li>Maskiner och verkstadsutrustning</li><li>Serverskåp och tekniska installationer</li><li>Trapphus utan hiss</li></ul>
+      </div>
+      <div class="tjanst">
+        <h3>Magasinering</h3>
+        <p>Förvara möbler, arkiv, material eller inventarier under en ombyggnad, mellan två lokaler eller så länge ni behöver.</p>
+        <ul><li>Kort- och långtidsförvaring</li><li>Hämtning och leverans ingår i upplägget</li><li>Utlämning av enskilda delar på beställning</li></ul>
+      </div>
+
+      <div class="tjanst-extra">
+        <h3>Det som inte ska med</h3>
+        <p>Vid varje flytt blir något över. Eftersom vi är en del av Avfallskonsulten i Huvudstaden kan vi samtidigt ta hand om bortforsling, återbruk och återvinning. Ni lämnar en tom lokal och slipper anlita någon till.</p>
+        <a href="#offert" class="btn btn-primar">Ta med i offerten</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="sa-gar-det-till" aria-labelledby="pr-rubrik">
+    <div class="wrap">
+      <div class="sektionshuvud">
+        <h2 id="pr-rubrik">Så går det till</h2>
+        <p>Samma upplägg oavsett om det gäller ett kassaskåp eller ett helt kontor.</p>
+      </div>
+      <ol class="steg-lista">
+        <li><h3>Förfrågan</h3><p>Ni berättar vad som ska flyttas, varifrån och när.</p></li>
+        <li><h3>Besiktning</h3><p>Vi tittar på plats eller via bilder och lämnar en offert.</p></li>
+        <li><h3>Planering</h3><p>Datum, tider, bemanning, fordon och tillträde bestäms.</p></li>
+        <li><h3>Flyttdag</h3><p>Vi packar, lastar, kör och ställer allt på rätt plats.</p></li>
+        <li><h3>Efteråt</h3><p>Det som blev över forslas bort och den gamla lokalen lämnas tom.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="om-oss" aria-labelledby="om-rubrik">
+    <div class="wrap om-grid">
+      <div class="om-text">
+        <h2 id="om-rubrik" style="margin-bottom:24px">Logistik är det vi gör varje dag.</h2>
+        <p>Huvudstadens Flytt är en del av Avfallskonsulten i Huvudstaden AB. Vi har lång erfarenhet av logistik och transport i Storstockholm, med planering, körningar och hantering ute hos fastigheter och verksamheter varje vecka.</p>
+        <p>Den vanan tar vi med oss till flyttarna: tydlig planering, tider som hålls och en kontaktperson som vet vad som händer.</p>
+      </div>
+      <div class="om-kort">
+        <dl>
+          <div><dt>Område</dt><dd>Stockholm och kranskommunerna</dd></div>
+          <div><dt>Kunder</dt><dd>Företag, kontor och hantverkare</dd></div>
+          <div><dt>Tjänster</dt><dd>Flytt, tunga lyft, magasinering, bortforsling</dd></div>
+          <div><dt>Bolag</dt><dd>Avfallskonsulten i Huvudstaden AB</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="offert" id="offert" aria-labelledby="of-rubrik">
+    <div class="wrap offert-grid">
+      <div>
+        <div class="sektionshuvud" style="margin-bottom:0">
+          <h2 id="of-rubrik">Begär offert</h2>
+          <p>Berätta kort om uppdraget så återkommer vi med frågor eller ett förslag på besiktning.</p>
+        </div>
+        <div class="kontaktvagar">
+          <a href="tel:+46868427888">08-684 278 88<span>Ring oss vardagar</span></a>
+          <a href="mailto:boka@huvudstadensflytt.se">boka@huvudstadensflytt.se<span>Svar inom en arbetsdag</span></a>
+        </div>
+      </div>
+
+      <form id="offertform" novalidate>
+        <div class="falt"><label for="foretag">Företag</label><input id="foretag" name="Företag" autocomplete="organization" required></div>
+        <div class="falt"><label for="namn">Kontaktperson</label><input id="namn" name="Kontaktperson" autocomplete="name" required></div>
+        <div class="falt"><label for="epost">E-post</label><input id="epost" name="E-post" type="email" autocomplete="email" required></div>
+        <div class="falt"><label for="telefon">Telefon</label><input id="telefon" name="Telefon" type="tel" autocomplete="tel"></div>
+        <div class="falt hel"><label for="typ">Vad gäller det?</label>
+          <select id="typ" name="Uppdrag">
+            <option>Kontorsflytt</option>
+            <option>Flytt av verksamhet eller butik</option>
+            <option>Hantverkare: material eller verkstad</option>
+            <option>Tunga lyft</option>
+            <option>Magasinering</option>
+            <option>Bortforsling och återvinning</option>
+            <option>Annat</option>
+          </select>
+        </div>
+        <div class="falt"><label for="fran">Från adress</label><input id="fran" name="Från"></div>
+        <div class="falt"><label for="till">Till adress</label><input id="till" name="Till"></div>
+        <div class="falt"><label for="datum">Önskat datum</label><input id="datum" name="Önskat datum" type="date"></div>
+        <div class="falt"><label for="storlek">Ungefärlig omfattning</label><input id="storlek" name="Omfattning" placeholder="T.ex. 15 arbetsplatser, 1 kassaskåp"></div>
+        <div class="falt hel"><label for="meddelande">Beskrivning</label><textarea id="meddelande" name="Beskrivning" placeholder="Våning, hiss, tunga föremål, sådant som ska slängas"></textarea></div>
+        <div class="form-fot">
+          <small>När du skickar öppnas ditt e-postprogram med uppgifterna ifyllda.</small>
+          <button type="submit" class="btn btn-primar">Skicka förfrågan</button>
+        </div>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fot-grid">
+    <div><strong>Huvudstadens Flytt</strong><br>En del av Avfallskonsulten i Huvudstaden AB<br>Org.nr 559128-0374</div>
+    <div>Flytt, tunga lyft och magasinering<br>för företag i Storstockholm</div>
+    <div>© <span id="ar"></span> Avfallskonsulten i Huvudstaden AB</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('ar').textContent = new Date().getFullYear();
+
+  const nav = document.getElementById('nav');
+  const knapp = document.getElementById('menyKnapp');
+  knapp.addEventListener('click', () => {
+    const oppen = nav.classList.toggle('oppen');
+    knapp.setAttribute('aria-expanded', oppen);
+    knapp.textContent = oppen ? 'Stäng' : 'Meny';
+  });
+  nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('oppen'); knapp.setAttribute('aria-expanded', false); knapp.textContent = 'Meny';
+  }));
+
+  // Mottagaradress för offertförfrågningar
+  const MOTTAGARE = 'boka@huvudstadensflytt.se';
+  const form = document.getElementById('offertform');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const saknas = [...form.querySelectorAll('[required]')].filter(f => !f.value.trim());
+    const epost = form.querySelector('#epost');
+    if (saknas.length) {
+      status.textContent = 'Fyll i ' + saknas.map(f => form.querySelector('label[for="' + f.id + '"]').textContent.toLowerCase()).join(', ') + '.';
+      saknas[0].focus(); return;
+    }
+    if (!epost.checkValidity()) { status.textContent = 'Kontrollera e-postadressen.'; epost.focus(); return; }
+    const rader = [...new FormData(form)].filter(([, v]) => String(v).trim()).map(([k, v]) => k + ': ' + v);
+    const amne = 'Offertförfrågan: ' + form.querySelector('#typ').value + ' – ' + form.querySelector('#foretag').value;
+    window.location.href = 'mailto:' + MOTTAGARE + '?subject=' + encodeURIComponent(amne) + '&body=' + encodeURIComponent(rader.join('\n'));
+    status.textContent = 'Ditt e-postprogram öppnas. Skicka mejlet därifrån så får vi förfrågan.';
+  });
+</script>
+</body>
+</html>
